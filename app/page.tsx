@@ -36,11 +36,11 @@ export default function Home() {
         <CardContent>
           <form>
             <div className="grid w-full items-center gap-4">
-              <div className="flex flex-col space-y-1.5">
+              <div className="flex flex-col space-y-2">
                 <Label htmlFor="title">Title</Label>
                 <Input id="title" placeholder="Title of your dream" />
               </div>
-              <div className="flex flex-col space-y-1.5">
+              <div className="flex flex-col space-y-2">
                 <Label htmlFor="date">Date</Label>
                 <Popover>
                   <PopoverTrigger asChild>
@@ -65,7 +65,7 @@ export default function Home() {
                   </PopoverContent>
                 </Popover>
               </div>
-              <div className="flex flex-col space-y-1.5">
+              <div className="flex flex-col space-y-2">
                 <Label htmlFor="dream">Dream</Label>
                 <Textarea placeholder="Describe your dream" />
               </div>
