@@ -7,7 +7,7 @@ export default function Home() {
       <Link href="./dreams" className="border p-5 rounded-md">
         Go to Dreams Table List
       </Link>
-      <Link href="./dreams/add-dream" className="border p-5 rounded-md">
+      <Link href="./dreams/create" className="border p-5 rounded-md">
         Add a Dream
       </Link>
     </main>

@@ -7,6 +7,7 @@ import { getCurrentTimeStamp } from "./utils";
 import { redirect } from "next/navigation";
 
 interface Props {
+  id?: string;
   title: string;
   date: Date;
   dream: string;
@@ -26,4 +27,29 @@ VALUES (${title}, ${getCurrentTimeStamp(date)}, ${dream})
 
   revalidatePath("/dreams");
   redirect("/dreams");
+};
+
+export const handleEditDream: SubmitHandler<Props> = async ({
+  id,
+  date,
+  dream,
+  title,
+}) => {
+  await sql`
+UPDATE dreams SET id= ${id}, title= ${title}, date= ${date.toISOString()}, dream= ${dream} WHERE id = ${id}
+`;
+
+  console.log("edit dream success");
+
+  revalidatePath("/dreams");
+  revalidatePath(`/dreams/${id}/edit`);
+  redirect("/dreams");
+};
+
+export const deleteDream = async (id: string) => {
+  await sql`DELETE FROM dreams WHERE id = ${id}`;
+
+  console.log("Dream Deleted");
+
+  revalidatePath("/dreams");
 };

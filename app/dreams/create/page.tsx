@@ -25,7 +25,7 @@ import {
 import { CalendarIcon } from "@radix-ui/react-icons";
 import { Calendar } from "@/components/ui/calendar";
 import { format } from "date-fns";
-import { cn, getCurrentTimeStamp } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 import { Textarea } from "@/components/ui/textarea";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
@@ -165,9 +165,6 @@ export default function Home() {
             </form>
           </Form>
         </CardContent>
-        {/* <CardFooter>
-          <Button>Submit</Button>
-        </CardFooter> */}
       </Card>
     </main>
   );

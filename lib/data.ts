@@ -15,3 +15,26 @@ export const fetchDreams = async () => {
     throw new Error("Failed to fetch dreams.");
   }
 };
+
+export async function fetchDreamsById(id: string) {
+  try {
+    const data = await sql<Dreams>`
+      SELECT
+        dreams.id,
+        dreams.title,
+        dreams.date,
+        dreams.dream
+      FROM dreams
+      WHERE dreams.id = ${id};
+    `;
+
+    const dreams = data.rows.map((dreams) => ({
+      ...dreams,
+    }));
+
+    return dreams[0];
+  } catch (error) {
+    console.error("Database Error:", error);
+    throw new Error("Failed to fetch dreams.");
+  }
+}

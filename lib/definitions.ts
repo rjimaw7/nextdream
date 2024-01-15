@@ -1,6 +1,6 @@
 export type Dreams = {
   id: string;
-  tile: string;
+  title: string;
   date: string;
   dream: string;
 };
