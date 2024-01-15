@@ -38,7 +38,8 @@ export default async function Home() {
 
   return (
     <div className="container mx-auto py-10">
-      <DataTable columns={columns} data={dreams} />
+      <p>test</p>
+      {/* <DataTable columns={columns} data={dreams} /> */}
     </div>
   );
 }
