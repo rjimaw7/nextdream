@@ -9,8 +9,6 @@ export const fetchDreams = async () => {
 
     const data = await sql<Dreams>`SELECT * FROM dreams LIMIT 4`;
 
-    console.log(data);
-
     return data.rows;
   } catch (error) {
     console.error("Database Error:", error);

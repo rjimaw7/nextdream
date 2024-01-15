@@ -14,8 +14,6 @@ async function seedDreams(client) {
         );
       `;
 
-    console.log(`Created "dreams" table`);
-
     // Insert data into the "dreams" table
     const insertedDreams = await Promise.all(
       dreams.map(
@@ -26,8 +24,6 @@ async function seedDreams(client) {
         `
       )
     );
-
-    console.log(`Seeded ${insertedDreams.length} dreams`);
 
     return {
       createTable,

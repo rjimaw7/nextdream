@@ -27,7 +27,7 @@ interface DataTableProps<TData, TValue> {
   data: TData[];
 }
 
-const DataTable = <TData, TValue>({
+export const DataTable = <TData, TValue>({
   columns,
   data,
 }: DataTableProps<TData, TValue>) => {
@@ -102,5 +102,3 @@ const DataTable = <TData, TValue>({
     </div>
   );
 };
-
-export default DataTable;

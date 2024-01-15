@@ -1,7 +1,7 @@
 import { fetchDreams } from "@/lib/data";
 import { ColumnDef } from "@tanstack/react-table";
 import { Dreams } from "@/lib/definitions";
-import DataTable from "./data-table";
+import { DataTable } from "./data-table";
 
 // export const columns: ColumnDef<Dreams>[] = [
 //   {
@@ -38,8 +38,7 @@ export default async function Home() {
 
   return (
     <div className="container mx-auto py-10">
-      <p>test</p>
-      {/* <DataTable columns={columns} data={dreams} /> */}
+      <DataTable columns={columns} data={dreams} />
     </div>
   );
 }
