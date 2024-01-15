@@ -24,8 +24,8 @@ import {
 } from "@/components/ui/form";
 import { CalendarIcon } from "@radix-ui/react-icons";
 import { Calendar } from "@/components/ui/calendar";
-import { format } from "date-fns";
-import { cn } from "@/lib/utils";
+import { format, set } from "date-fns";
+import { cn, getCurrentTimeStamp } from "@/lib/utils";
 import { Textarea } from "@/components/ui/textarea";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
@@ -52,15 +52,27 @@ type DreamSchemaType = z.infer<typeof DreamSchema>;
 export default function Home() {
   const form = useForm<DreamSchemaType>({
     resolver: zodResolver(DreamSchema),
-    // defaultValues: {
-    //   title: "",
-    //   date: new Date(),
-    //   dream: "",
-    // },
+    defaultValues: {
+      title: "",
+      date: new Date(),
+      dream: "",
+    },
   });
 
   const handleSubmitDream = async () => {
-    console.log("submit");
+    const selectedDate = form.getValues("date");
+    const currentTimestamp = new Date();
+
+    // Set the time part of the selected date to the current timestamp's time
+    const updatedDate = set(selectedDate, {
+      hours: currentTimestamp.getHours(),
+      minutes: currentTimestamp.getMinutes(),
+      seconds: currentTimestamp.getSeconds(),
+    });
+
+    console.log(form.getValues("title"));
+    console.log(getCurrentTimeStamp(form.getValues("date")));
+    console.log(form.getValues("dream"));
   };
 
   return (

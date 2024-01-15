@@ -3,23 +3,38 @@ import { ColumnDef } from "@tanstack/react-table";
 import { Dreams } from "@/lib/definitions";
 import DataTable from "./data-table";
 
-export const columns: ColumnDef<Dreams>[] = [
-  {
-    accessorKey: "title",
-    header: "Title",
-  },
-  {
-    accessorKey: "date",
-    header: "Dream Date",
-  },
-  {
-    accessorKey: "dream",
-    header: "Dream",
-  },
-];
+// export const columns: ColumnDef<Dreams>[] = [
+//   {
+//     accessorKey: "title",
+//     header: "Title",
+//   },
+//   {
+//     accessorKey: "date",
+//     header: "Dream Date",
+//   },
+//   {
+//     accessorKey: "dream",
+//     header: "Dream",
+//   },
+// ];
 
 export default async function Home() {
   const dreams = await fetchDreams();
+
+  const columns: ColumnDef<Dreams>[] = [
+    {
+      accessorKey: "title",
+      header: "Title",
+    },
+    {
+      accessorKey: "date",
+      header: "Dream Date",
+    },
+    {
+      accessorKey: "dream",
+      header: "Dream",
+    },
+  ];
 
   return (
     <div className="container mx-auto py-10">
