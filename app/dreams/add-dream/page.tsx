@@ -24,17 +24,22 @@ import {
 } from "@/components/ui/form";
 import { CalendarIcon } from "@radix-ui/react-icons";
 import { Calendar } from "@/components/ui/calendar";
-import { format, set } from "date-fns";
+import { format } from "date-fns";
 import { cn, getCurrentTimeStamp } from "@/lib/utils";
 import { Textarea } from "@/components/ui/textarea";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { handleSubmitDream } from "@/lib/actions";
 
 const DreamSchema = z.object({
-  title: z.string({
-    required_error: "Title is required",
-  }),
+  title: z
+    .string({
+      required_error: "Title is required",
+    })
+    .min(3, {
+      message: "Title must be at least 3 characters.",
+    }),
   date: z.date({
     required_error: "A date of dream is required.",
   }),
@@ -59,21 +64,13 @@ export default function Home() {
     },
   });
 
-  const handleSubmitDream = async () => {
-    const selectedDate = form.getValues("date");
-    const currentTimestamp = new Date();
-
-    // Set the time part of the selected date to the current timestamp's time
-    const updatedDate = set(selectedDate, {
-      hours: currentTimestamp.getHours(),
-      minutes: currentTimestamp.getMinutes(),
-      seconds: currentTimestamp.getSeconds(),
-    });
-
-    console.log(form.getValues("title"));
-    console.log(getCurrentTimeStamp(form.getValues("date")));
-    console.log(form.getValues("dream"));
-  };
+  const onSubmit = form.handleSubmit(async (data) => {
+    try {
+      await handleSubmitDream(data);
+    } catch (error) {
+      console.error(error);
+    }
+  });
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
@@ -84,10 +81,7 @@ export default function Home() {
         </CardHeader>
         <CardContent>
           <Form {...form}>
-            <form
-              onSubmit={form.handleSubmit(handleSubmitDream)}
-              className="space-y-4"
-            >
+            <form onSubmit={onSubmit} className="space-y-4">
               <div className="grid w-full items-center gap-4">
                 <FormField
                   control={form.control}
