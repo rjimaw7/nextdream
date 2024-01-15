@@ -7,7 +7,7 @@ export const fetchDreams = async () => {
     // Don't do this in production :)
     // await new Promise((resolve) => setTimeout(resolve, 1000));
 
-    const data = await sql<Dreams>`SELECT * FROM dreams LIMIT 4`;
+    const data = await sql<Dreams>`SELECT * FROM dreams LIMIT 10`;
 
     return data.rows;
   } catch (error) {

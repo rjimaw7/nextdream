@@ -2,42 +2,17 @@ import { fetchDreams } from "@/lib/data";
 import { ColumnDef } from "@tanstack/react-table";
 import { Dreams } from "@/lib/definitions";
 import { DataTable } from "./data-table";
-
-// export const columns: ColumnDef<Dreams>[] = [
-//   {
-//     accessorKey: "title",
-//     header: "Title",
-//   },
-//   {
-//     accessorKey: "date",
-//     header: "Dream Date",
-//   },
-//   {
-//     accessorKey: "dream",
-//     header: "Dream",
-//   },
-// ];
+import Link from "next/link";
+import { columns } from "@/lib/columns";
 
 export default async function Home() {
   const dreams = await fetchDreams();
 
-  const columns: ColumnDef<Dreams>[] = [
-    {
-      accessorKey: "title",
-      header: "Title",
-    },
-    {
-      accessorKey: "date",
-      header: "Dream Date",
-    },
-    {
-      accessorKey: "dream",
-      header: "Dream",
-    },
-  ];
-
   return (
-    <div className="container mx-auto py-10">
+    <div className="container mx-auto py-10 space-y-8">
+      <Link href="./dreams/add-dream" className="border p-5 rounded-md">
+        Add a Dream
+      </Link>
       <DataTable columns={columns} data={dreams} />
     </div>
   );
